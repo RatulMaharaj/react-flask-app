@@ -3,11 +3,11 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  const [currentTime, setCurrentTime] = useState(0);
+  const [message, setMessage] = useState("Waiting...");
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/time').then(res => res.json()).then(data => {
-      setCurrentTime(data.time);
+    fetch('http://localhost:5000/api/message').then(res => res.json()).then(data => {
+      setMessage(data.message);
     });
   },[]);
 
@@ -19,7 +19,7 @@ function App() {
           Edit <code>src/App.js</code> and save to reload.
         </p>
         <p>
-          Flask says it is currently {currentTime}
+          The message is: {message}
         </p>
         <a
           className="App-link"

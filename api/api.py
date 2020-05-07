@@ -9,6 +9,6 @@ cors = CORS(app)
 def index():
     return app.send_static_file('index.html')
 
-@app.route('/api/time')
+@app.route('/api/message')
 def get_current_time():
-    return jsonify(time=datetime.datetime.now())
+    return {'message' : "Hello from Flask!" }
