@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+.mylist{
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+}
+
+.mylist li{
+  margin: 1em;
+}
+.mylist a{
+  color: #61dafb;
+}
