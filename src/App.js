@@ -6,7 +6,7 @@ function App() {
   const [message, setMessage] = useState("Waiting...");
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/message').then(res => res.json()).then(data => {
+    fetch('api/message').then(res => res.json()).then(data => {
       setMessage(data.message);
     });
   },[]);
