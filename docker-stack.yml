@@ -10,7 +10,7 @@ services:
         placement:
          constraints: [node.hostname == <hostname of your machine>]
     ports:
-      - "3000:3000"
+      - "3000:80"
   api:
     image: <backend_imagename>
     deploy:
