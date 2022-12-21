@@ -69,8 +69,8 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 ## Configuring Proxy
 
-* Here used a Docker Nginx reverse proxy server to expose application
-* Befor starting configure nginx proxy file 
+* Here used a Docker Nginx reverse proxy server to expose the application
+* Initially configure the Nginx proxy file 
 ```
 server {
   listen 80;
@@ -109,6 +109,7 @@ docker run -d -it --name <container_name> -p <forward_portnumber>:<application_p
 ```
 docker compose up -d
 ```
+
 ## How to run this app using Docker Swarm
 
 ### Step 1:
@@ -120,13 +121,13 @@ docker swarm init --advertise-addr <manager-node-IP>
  Example: docker swarm init --advertise-addr x.x.x.x
 
 ### Step 2:
-* Now, add worker node by copying the command of the “swarm init” and paste the output onto the worker node:
+* Now, add a worker node by copying the command of the “swarm init” and paste the output onto the worker node:
 
 ```
 docker swarm --token xxxx-xxxxx-xxxxxx-xxxxx
 ````
 ### Step 3:
-* Deploy the application using docker stack
+* Deploy the application using the docker stack
 ```
 docker stack deploy -c docker.stack.yml <stack-name>
 ```
@@ -135,7 +136,7 @@ docker stack deploy -c docker.stack.yml <stack-name>
 ```
 docker stack ps <stack_name>
 ```
-* To inactivate swarm
+* To inactivate the swarm
 ```
 docker swarm leave
 ```
