@@ -66,3 +66,77 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+## Configuring Proxy
+
+* Here used a Docker Nginx reverse proxy server to expose the application
+* Initially configure the Nginx proxy file 
+```
+server {
+  listen 80;
+  listen [::]:80;
+  server_name localhost;
+
+  location / {
+    root /usr/share/nginx/html;
+    index index.html index.htm;
+  }
+
+  location / {
+    proxy_pass http://x.x.x.x:xxxx/api;
+  }
+
+  error_page 500 502 503 504 /50x.html;
+  location = /50x.html {
+    root /usr/share/nginx/html;
+  }
+}
+```
+## How to run this app using Docker
+```
+git clone https://github.com/RatulMaharaj/react-flask-app.git
+
+cd react-flask-app
+
+docker build -t <image_name> .
+
+docker run -d -it --name <container_name> -p <forward_portnumber>:<application_port_number> <image_name>
+
+```
+
+## How to run this app using Docker Compose
+
+```
+docker compose up -d
+```
+
+## How to run this app using Docker Swarm
+
+### Step 1:
+* Initializing a cluster of Docker Engines in swarm mode
+
+```
+docker swarm init --advertise-addr <manager-node-IP>
+```
+ Example: docker swarm init --advertise-addr x.x.x.x
+
+### Step 2:
+* Now, add a worker node by copying the command of the “swarm init” and paste the output onto the worker node:
+
+```
+docker swarm --token xxxx-xxxxx-xxxxxx-xxxxx
+````
+### Step 3:
+* Deploy the application using the docker stack
+```
+docker stack deploy -c docker.stack.yml <stack-name>
+```
+### Step 4:
+* List the tasks in the stack
+```
+docker stack ps <stack_name>
+```
+* To inactivate the swarm
+```
+docker swarm leave
+```
